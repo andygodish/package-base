@@ -1,0 +1,12 @@
+log_format = 'console'
+log_level = 'info'
+
+[package]
+oci_concurrency = 6
+
+[package.deploy]
+retries = 3
+timeout = 900000000000
+
+[package.deploy.set]
+

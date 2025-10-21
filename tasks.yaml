@@ -1,0 +1,57 @@
+includes: []
+
+variables:
+  - name: REGISTRY
+    description: "Remote OCI registry for the Core Base package"
+    default: "ghcr.io/defenseunicorns/packages/private/uds"
+  - name: PACKAGE_NAME
+    default: "core-base"
+  - name: PACKAGE_VERSION
+    description: "Version of the Core Base package"
+    default: "0.54.0"
+  - name: PACKAGE_FLAVOR
+    default: "unicorn"
+  - name: ARCHITECTURE
+    description: "System architecture (amd64 or arm64)"
+    default: ""
+  - name: CONFIG_FILE
+    description: "Path to the zarf config file"
+    default: "zarf-config.toml"
+
+tasks:
+  - name: pull
+    description: "Pull Core Base package from OCI registry"
+    actions:
+      - description: "Pull Core Base package from OCI registry"
+        cmd: |
+          echo "Pulling Core Base package ${PACKAGE_NAME}:${PACKAGE_VERSION}-${PACKAGE_FLAVOR} from ${REGISTRY}"
+
+          ARCH_FLAG=""
+          if [ -n "${ARCHITECTURE}" ]; then
+            ARCH_FLAG="-a ${ARCHITECTURE}"
+            echo "Using specified architecture: ${ARCHITECTURE}"
+          else
+            echo "Using auto-detected architecture"
+          fi
+          
+          uds zarf package pull ${ARCH_FLAG} oci://${REGISTRY}/${PACKAGE_NAME}:${PACKAGE_VERSION}-${PACKAGE_FLAVOR}
+        env:
+          - ZARF_LOG_LEVEL=info
+
+  - name: deploy
+    description: "Deploy Core Base package"
+    actions:
+      - description: "Deploy Core Base with defined zarf-config.toml"
+        cmd: |
+          ZARF_CONFIG="$CONFIG_FILE" uds zarf package deploy zarf-package-*-${PACKAGE_VERSION}-${PACKAGE_FLAVOR}.tar.zst \
+            --confirm
+
+  - name: clean
+    description: "Remove local Zarf package files"
+    actions:
+      - description: "Clean up local Zarf package files"
+        cmd: |
+          echo "Cleaning up local UDS Zarf package files"
+          rm -f zarf-package-core-base-*.tar.zst
+          echo "Package files removed"
+
