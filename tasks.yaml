@@ -7,8 +7,8 @@ variables:
   - name: PACKAGE_NAME
     default: "core-base"
   - name: PACKAGE_VERSION
-    description: "Version of the Core Base package"
-    default: "0.54.1"
+  description: "Version of the Core Base package"
+  default: "0.55.0"
   - name: PACKAGE_FLAVOR
     default: "unicorn"
   - name: ARCHITECTURE
