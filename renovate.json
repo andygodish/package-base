@@ -1,38 +1,16 @@
 {
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+  "extends": ["config:base"],
   "customManagers": [
     {
       "customType": "regex",
-      "managerFilePatterns": ["/^uds-bundle\\.ya?ml$/"],
+      "fileMatch": ["\\.ya?ml$"],
       "matchStrings": [
-        "(?m)^(?<indent>\\s*)version:\\s*(?<currentValue>\\d+\\.\\d+\\.\\d+)(?<suffix>-[A-Za-z0-9_.-]+)?\\s*(?:#.*)?$"
+        "- name: PACKAGE_VERSION\\s*\\n\\s*description: \"Version of the Core Base package\"\\s*\\n\\s*default: \"(?<currentValue>[^\"]+)\""
       ],
       "datasourceTemplate": "github-releases",
       "depNameTemplate": "defenseunicorns/uds-core",
-      "versioningTemplate": "semver",
-      "autoReplaceStringTemplate": "{{indent}}version: {{newValue}}{{suffix}}"
-    },
-    {
-      "customType": "regex",
-      "managerFilePatterns": ["/^uds-bundle\\.ya?ml$/"],
-      "matchStrings": [
-        "(?m)^(?<indent>\\s*)ref:\\s*(?<currentValue>\\d+\\.\\d+\\.\\d+)(?<suffix>-[A-Za-z0-9_.-]+)?\\s*(?:#.*)?$"
-      ],
-      "datasourceTemplate": "github-releases",
-      "depNameTemplate": "defenseunicorns/uds-core",
-      "versioningTemplate": "semver",
-      "autoReplaceStringTemplate": "{{indent}}ref: {{newValue}}{{suffix}}"
-    },
-    {
-      "customType": "regex",
-      "managerFilePatterns": ["/^tasks\\.ya?ml$/"],
-      "matchStrings": [
-        "(?ms)^\\s*-\\s*name:\\s*PACKAGE_VERSION\\s*\\n\\s*description:\\s*\"Version of the Core Base package\"\\s*\\n\\s*default:\\s*\"(?<currentValue>\\d+\\.\\d+\\.\\d+)\"\\s*$"
-      ],
-      "datasourceTemplate": "github-releases",
-      "depNameTemplate": "defenseunicorns/uds-core",
-      "versioningTemplate": "semver",
-      "autoReplaceStringTemplate": "  - name: PACKAGE_VERSION\\n    description: \"Version of the Core Base package\"\\n    default: \"{{newValue}}\""
+      "versioningTemplate": "semver"
     }
   ],
   "packageRules": [
@@ -42,7 +20,7 @@
       "groupName": "Core Base Package",
       "semanticCommitType": "deps",
       "semanticCommitScope": "core",
-      "commitMessageTopic": "core base package"
+      "commitMessageTopic": "Core Base package"
     }
   ]
 }
