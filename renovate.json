@@ -1,14 +1,17 @@
 {
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
-  "extends": ["config:base"],
+  "extends": ["config:recommended"],
   "customManagers": [
     {
       "customType": "regex",
-      "fileMatch": ["\\.ya?ml$", "uds-bundle\\.ya?ml$"],
+      "managerFilePatterns": [
+        "^tasks\\.ya?ml$",
+        "^uds-bundle\\.ya?ml$"
+      ],
       "matchStrings": [
         "- name: PACKAGE_VERSION\\s*\\n\\s*description: \"Version of the Core Base package\"\\s*\\n\\s*default: \"(?<currentValue>[^\"]+)\"",
-        "^\\s*version:\\s*(?<currentValue>\\d+\\.\\d+\\.\\d+)(?:-[A-Za-z0-9_.-]+)?\\s*$",
-        "^\\s*ref:\\s*(?<currentValue>\\d+\\.\\d+\\.\\d+)(?:-[A-Za-z0-9_.-]+)?\\s*$"
+        "\\bversion:\\s*(?<currentValue>\\d+\\.\\d+\\.\\d+)(?:-[A-Za-z0-9_.-]+)?\\b",
+        "\\bref:\\s*(?<currentValue>\\d+\\.\\d+\\.\\d+)(?:-[A-Za-z0-9_.-]+)?\\b"
       ],
       "datasourceTemplate": "github-releases",
       "depNameTemplate": "defenseunicorns/uds-core",
