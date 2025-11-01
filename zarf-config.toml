@@ -9,4 +9,4 @@ retries = 3
 timeout = 900000000000
 
 [package.deploy.set]
-
+DOMAIN = "uds.local"

@@ -7,3 +7,5 @@ zarf-sbom
 tmp/
 zarf-config.yaml
 *.tar
+uds-config.yaml
+certs/** 
