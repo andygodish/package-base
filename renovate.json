@@ -4,9 +4,11 @@
   "customManagers": [
     {
       "customType": "regex",
-      "fileMatch": ["\\.ya?ml$"],
+      "fileMatch": ["\\.ya?ml$", "uds-bundle\\.ya?ml$"],
       "matchStrings": [
-        "- name: PACKAGE_VERSION\\s*\\n\\s*description: \"Version of the Core Base package\"\\s*\\n\\s*default: \"(?<currentValue>[^\"]+)\""
+        "- name: PACKAGE_VERSION\\s*\\n\\s*description: \"Version of the Core Base package\"\\s*\\n\\s*default: \"(?<currentValue>[^\"]+)\"",
+        "^\\s*version:\\s*(?<currentValue>\\d+\\.\\d+\\.\\d+)(?:-[A-Za-z0-9_.-]+)?\\s*$",
+        "^\\s*ref:\\s*(?<currentValue>\\d+\\.\\d+\\.\\d+)(?:-[A-Za-z0-9_.-]+)?\\s*$"
       ],
       "datasourceTemplate": "github-releases",
       "depNameTemplate": "defenseunicorns/uds-core",
