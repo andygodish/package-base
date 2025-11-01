@@ -22,8 +22,6 @@
       "versioningTemplate": "semver",
       "autoReplaceStringTemplate": "{{indent}}ref: {{newValue}}{{suffix}}"
     },
-
-    /* OPTIONAL: tighten up tasks.yaml so quotes/spacing stay exact */
     {
       "customType": "regex",
       "managerFilePatterns": ["/^tasks\\.ya?ml$/"],
