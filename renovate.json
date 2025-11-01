@@ -1,10 +1,12 @@
 {
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
-  "extends": ["config:base"],
+  "extends": ["config:recommended"],
+  "recreateClosed": true,
+
   "customManagers": [
     {
       "customType": "regex",
-      "fileMatch": ["\\.ya?ml$"],
+      "managerFilePatterns": ["/\\.ya?ml$/"],
       "matchStrings": [
         "- name: PACKAGE_VERSION\\s*\\n\\s*description: \"Version of the Core Base package\"\\s*\\n\\s*default: \"(?<currentValue>[^\"]+)\""
       ],
@@ -13,6 +15,7 @@
       "versioningTemplate": "semver"
     }
   ],
+
   "packageRules": [
     {
       "matchManagers": ["custom.regex"],
@@ -20,7 +23,8 @@
       "groupName": "Core Base Package",
       "semanticCommitType": "deps",
       "semanticCommitScope": "core",
-      "commitMessageTopic": "Core Base package"
+      "commitMessageTopic": "Core Base package",
+      "prTitle": "deps(core): update core base package to v{{newVersion}}"
     }
   ]
 }
