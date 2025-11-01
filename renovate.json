@@ -14,17 +14,10 @@
     {
       "fileMatch": ["^uds-bundle\\.ya?ml$"],
       "matchStrings": [
-        "(?m)^\\s*version:\\s*(?<currentValue>\\d+\\.\\d+\\.\\d+)(?<suffix>-[A-Za-z0-9_.-]+)?\\s*$"
-      ],
-      "datasourceTemplate": "github-releases",
-      "depNameTemplate": "defenseunicorns/uds-core",
-      "versioningTemplate": "semver",
-      "autoReplaceStringTemplate": "{{newValue}}{{suffix}}"
-    },
-    {
-      "fileMatch": ["^uds-bundle\\.ya?ml$"],
-      "matchStrings": [
-        "(?m)^\\s*ref:\\s*(?<currentValue>\\d+\\.\\d+\\.\\d+)(?<suffix>-[A-Za-z0-9_.-]+)?\\s*$"
+        // version: 0.54.1-unicorn [optional comment]
+        "(?m)^\\s*version:\\s*(?<currentValue>\\d+\\.\\d+\\.\\d+)(?<suffix>-[A-Za-z0-9_.-]+)?\\s*(?:#.*)?$",
+        // ref: 0.54.1-unicorn [optional comment]
+        "(?m)^\\s*ref:\\s*(?<currentValue>\\d+\\.\\d+\\.\\d+)(?<suffix>-[A-Za-z0-9_.-]+)?\\s*(?:#.*)?$"
       ],
       "datasourceTemplate": "github-releases",
       "depNameTemplate": "defenseunicorns/uds-core",
@@ -39,7 +32,7 @@
       "groupName": "Core Base Package",
       "semanticCommitType": "deps",
       "semanticCommitScope": "core",
-      "commitMessageTopic": "Core Base package"
+      "commitMessageTopic": "core base package"
     }
   ]
 }
