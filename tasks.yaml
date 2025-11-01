@@ -49,9 +49,12 @@ tasks:
   - name: clean
     description: "Remove local Zarf package files"
     actions:
-      - description: "Clean up local Zarf package files"
+      - description: "Clean up local Zarf package & UDS Bundle tarballs"
         cmd: |
-          echo "Cleaning up local UDS Zarf package files"
+          echo "Cleaning up local UDS Zarf packages"
           rm -f zarf-package-core-base-*.tar.zst
           echo "Package files removed"
+          echo "Cleaning up local UDS Bundles"
+          rm -f uds-bundle-core-base-*.tar.zst
+          echo "Bundle files removed"
 
