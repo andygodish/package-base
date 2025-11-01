@@ -32,7 +32,7 @@
       "datasourceTemplate": "github-releases",
       "depNameTemplate": "defenseunicorns/uds-core",
       "versioningTemplate": "semver",
-      "autoReplaceStringTemplate": "  - name: PACKAGE_VERSION\n    description: \"Version of the Core Base package\"\n    default: \"{{newValue}}\""
+      "autoReplaceStringTemplate": "  - name: PACKAGE_VERSION\\n    description: \"Version of the Core Base package\"\\n    default: \"{{newValue}}\""
     }
   ],
   "packageRules": [
