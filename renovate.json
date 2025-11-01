@@ -1,10 +1,11 @@
 {
+  "$schema": "https://docs.renovatebot.com/renovate-schema.json",
   "customManagers": [
     {
       "customType": "regex",
       "managerFilePatterns": ["/^uds-bundle\\.ya?ml$/"],
       "matchStrings": [
-        "^(?<indent>\\s*)version:\\s*(?<currentValue>\\d+\\.\\d+\\.\\d+)(?<suffix>-[A-Za-z0-9_.-]+)?\\s*(?:#.*)?$"
+        "(?m)^(?<indent>\\s*)version:\\s*(?<currentValue>\\d+\\.\\d+\\.\\d+)(?<suffix>-[A-Za-z0-9_.-]+)?\\s*(?:#.*)?$"
       ],
       "datasourceTemplate": "github-releases",
       "depNameTemplate": "defenseunicorns/uds-core",
@@ -15,7 +16,7 @@
       "customType": "regex",
       "managerFilePatterns": ["/^uds-bundle\\.ya?ml$/"],
       "matchStrings": [
-        "^(?<indent>\\s*)ref:\\s*(?<currentValue>\\d+\\.\\d+\\.\\d+)(?<suffix>-[A-Za-z0-9_.-]+)?\\s*(?:#.*)?$"
+        "(?m)^(?<indent>\\s*)ref:\\s*(?<currentValue>\\d+\\.\\d+\\.\\d+)(?<suffix>-[A-Za-z0-9_.-]+)?\\s*(?:#.*)?$"
       ],
       "datasourceTemplate": "github-releases",
       "depNameTemplate": "defenseunicorns/uds-core",
@@ -34,7 +35,6 @@
       "autoReplaceStringTemplate": "  - name: PACKAGE_VERSION\n    description: \"Version of the Core Base package\"\n    default: \"{{newValue}}\""
     }
   ],
-
   "packageRules": [
     {
       "matchManagers": ["custom.regex"],
