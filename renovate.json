@@ -2,21 +2,9 @@
   "customManagers": [
     {
       "customType": "regex",
-      "managerFilePatterns": ["/^tasks\\.ya?ml$/"],
-      "matchStrings": [
-        "(?ms)^\\s*-\\s*name:\\s*PACKAGE_VERSION\\s*\\n\\s*description:\\s*\"Version of the Core Base package\"\\s*\\n\\s*default:\\s*\"(?<currentValue>\\d+\\.\\d+\\.\\d+)\""
-      ],
-      "datasourceTemplate": "github-releases",
-      "depNameTemplate": "defenseunicorns/uds-core",
-      "versioningTemplate": "semver",
-      "autoReplaceStringTemplate": "  - name: PACKAGE_VERSION\n  description: \"Version of the Core Base package\"\n  default: \"{{newValue}}\""
-    },
-
-    {
-      "customType": "regex",
       "managerFilePatterns": ["/^uds-bundle\\.ya?ml$/"],
       "matchStrings": [
-        "(?m)^(?<indent>\\s*)version:\\s*(?<currentValue>\\d+\\.\\d+\\.\\d+)(?<suffix>-[A-Za-z0-9_.-]+)?\\s*(?:#.*)?$"
+        "^(?<indent>\\s*)version:\\s*(?<currentValue>\\d+\\.\\d+\\.\\d+)(?<suffix>-[A-Za-z0-9_.-]+)?\\s*(?:#.*)?$"
       ],
       "datasourceTemplate": "github-releases",
       "depNameTemplate": "defenseunicorns/uds-core",
@@ -27,12 +15,25 @@
       "customType": "regex",
       "managerFilePatterns": ["/^uds-bundle\\.ya?ml$/"],
       "matchStrings": [
-        "(?m)^(?<indent>\\s*)ref:\\s*(?<currentValue>\\d+\\.\\d+\\.\\d+)(?<suffix>-[A-Za-z0-9_.-]+)?\\s*(?:#.*)?$"
+        "^(?<indent>\\s*)ref:\\s*(?<currentValue>\\d+\\.\\d+\\.\\d+)(?<suffix>-[A-Za-z0-9_.-]+)?\\s*(?:#.*)?$"
       ],
       "datasourceTemplate": "github-releases",
       "depNameTemplate": "defenseunicorns/uds-core",
       "versioningTemplate": "semver",
       "autoReplaceStringTemplate": "{{indent}}ref: {{newValue}}{{suffix}}"
+    },
+
+    /* OPTIONAL: tighten up tasks.yaml so quotes/spacing stay exact */
+    {
+      "customType": "regex",
+      "managerFilePatterns": ["/^tasks\\.ya?ml$/"],
+      "matchStrings": [
+        "(?ms)^\\s*-\\s*name:\\s*PACKAGE_VERSION\\s*\\n\\s*description:\\s*\"Version of the Core Base package\"\\s*\\n\\s*default:\\s*\"(?<currentValue>\\d+\\.\\d+\\.\\d+)\"\\s*$"
+      ],
+      "datasourceTemplate": "github-releases",
+      "depNameTemplate": "defenseunicorns/uds-core",
+      "versioningTemplate": "semver",
+      "autoReplaceStringTemplate": "  - name: PACKAGE_VERSION\n    description: \"Version of the Core Base package\"\n    default: \"{{newValue}}\""
     }
   ],
 
