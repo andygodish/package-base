@@ -24,7 +24,7 @@
       "semanticCommitType": "deps",
       "semanticCommitScope": "core",
       "commitMessageTopic": "Core Base package",
-      "prTitle": "deps(core): update core base package to v{{newVersion}}"
+      "prTitle": "deps(core): update core base package to {{newVersion}}"
     }
   ]
 }
