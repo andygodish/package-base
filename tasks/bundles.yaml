@@ -1,0 +1,27 @@
+# Copyright 2024 Defense Unicorns
+# SPDX-License-Identifier: AGPL-3.0-or-later OR LicenseRef-Defense-Unicorns-Commercial
+# yaml-language-server: $schema=https://raw.githubusercontent.com/defenseunicorns/uds-cli/main/tasks.schema.json
+
+tasks:
+  - name: create
+    description: Create a bundle for a designated environment
+    inputs:
+      path:
+        description: Path to the bundle definition files
+        required: true
+        default: "."
+      options:
+        description: For setting create time variables and flags
+    actions:
+      - cmd: |
+          ./uds create ${{ .inputs.path }} --confirm --no-progress \
+            ${{ .inputs.options }}
+
+  - name: update-bundle-version
+    description: |
+      Updates the metadata.version and packages.name["core"].ref to 
+      use the new version supplied by renovate to the tasks.yaml file. 
+    actions:
+      - cmd: |
+          export VER=$(yq -r '.variables[] | select(.name=="PACKAGE_VERSION") | .default' tasks.yaml)
+          yq -i '.metadata.version = env(VER) | (.packages[] | select(.name=="core") | .ref) = (env(VER) + "-unicorn")' uds-bundle.yaml

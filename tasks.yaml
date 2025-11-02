@@ -1,4 +1,5 @@
-includes: []
+includes:
+  - bundles: ./tasks/bundles.yaml
 
 variables:
   - name: REGISTRY
@@ -33,7 +34,7 @@ tasks:
           else
             echo "Using auto-detected architecture"
           fi
-          
+
           uds zarf package pull ${ARCH_FLAG} oci://${REGISTRY}/${PACKAGE_NAME}:${PACKAGE_VERSION}-${PACKAGE_FLAVOR}
         env:
           - ZARF_LOG_LEVEL=info
@@ -58,3 +59,13 @@ tasks:
           rm -f uds-bundle-core-base-*.tar.zst
           echo "Bundle files removed"
 
+  # First change the PACKAGE_VERSION in the variables section above to create a different version,
+  # it will result in the uds-bundle.yaml being updated with the new version and ref for core. I 
+  # couldn't get renovate to do this cleanly.
+  - name: create-bundles
+    description: |
+      "Create a single package bundle for Core Base. This 
+      allows for granular control over helm chart values."
+    actions:
+      - task: bundles:update-bundle-version
+      - task: bundles:create
