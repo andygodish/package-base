@@ -3,7 +3,7 @@ metadata:
   name: core-base
   version: 0.55.0
 packages:
-  - name: core
+  - name: base
     repository: ghcr.io/defenseunicorns/packages/private/uds/core-base
     ref: 0.55.0-unicorn
     overrides:

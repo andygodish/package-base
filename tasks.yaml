@@ -62,7 +62,7 @@ tasks:
   # First change the PACKAGE_VERSION in the variables section above to create a different version,
   # it will result in the uds-bundle.yaml being updated with the new version and ref for core. I 
   # couldn't get renovate to do this cleanly.
-  - name: create-bundles
+  - name: create-bundle
     description: |
       "Create a single package bundle for Core Base. This 
       allows for granular control over helm chart values."
