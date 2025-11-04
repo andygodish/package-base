@@ -23,5 +23,12 @@ tasks:
       use the new version supplied by renovate to the tasks.yaml file. 
     actions:
       - cmd: |
-          export VER=$(yq -r '.variables[] | select(.name=="PACKAGE_VERSION") | .default' tasks.yaml)
-          yq -i '.metadata.version = env(VER) | (.packages[] | select(.name=="core") | .ref) = (env(VER) + "-unicorn")' uds-bundle.yaml
+          # pull values from tasks.yaml
+          export VER=$(uds zarf tools yq -r '.variables[] | select(.name=="PACKAGE_VERSION") | .default' tasks.yaml)
+          export FLAVOR=$(uds zarf tools yq -r '.variables[] | select(.name=="PACKAGE_FLAVOR")  | .default' tasks.yaml)
+
+          # update uds-bundle.yaml
+          uds zarf tools yq -i '
+            .metadata.version = env(VER) |
+            (.packages[] | select(.name=="base") | .ref) = (env(VER) + "-" + env(FLAVOR))
+          ' uds-bundle.yaml
