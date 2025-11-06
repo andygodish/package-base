@@ -30,3 +30,8 @@ packages:
               path: tls.cert
             - name: TENANT_TLS_KEY
               path: tls.key
+      uds-operator-config:
+        uds-operator-config:
+          variables:
+            - name: ALLOW_ALL_NS_EXEMPTIONS
+              path: cluster.policy.allowAllNsExemptions
