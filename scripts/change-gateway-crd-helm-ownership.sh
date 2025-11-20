@@ -18,7 +18,10 @@ CRDS=(
   xmeshes.gateway.networking.x-k8s.io
 )
 
+# This can now be a release-name source string or a zarf-<hash>
 CLI_ARG_RELEASE_NAME="${1:-}"
+
+# I've never used this, but Helm still records which namespace “owns” the release in the annotations meta.helm.sh/release-namespace
 CLI_ARG_RELEASE_NAMESPACE="${2:-}"
 
 RELEASE_NAME="${RELEASE_NAME:-}"
@@ -46,6 +49,7 @@ else
 fi
 
 if [[ -n "${CLI_ARG_RELEASE_NAME}" ]]; then
+  # Parsing wheather or not you are already supplying a zarf-<hash> release name vs a source string
   if [[ "${CLI_ARG_RELEASE_NAME}" == zarf-* ]]; then
     RELEASE_NAME="${CLI_ARG_RELEASE_NAME}"
   else
@@ -64,6 +68,7 @@ else
   done
 fi
 
+# Supply this either through env var or script arg $1
 if [[ -n "${RELEASE_NAME}" ]]; then
   RELEASE_SUPPLIED=true
 fi
@@ -74,6 +79,7 @@ detect_release_metadata() {
       echo "ERROR: shasum command is required to derive release name from RELEASE_NAME_SOURCE." >&2
       exit 1
     fi
+    # produces the zarf-<SHA-1> release name used by Zarf internally for the helm ownership annotation
     RELEASE_NAME="zarf-$(printf '%s' "${RELEASE_NAME_SOURCE}" | shasum | awk '{print $1}')"
     echo "Derived release name from source '${RELEASE_NAME_SOURCE}': ${RELEASE_NAME}"
     RELEASE_SUPPLIED=true
