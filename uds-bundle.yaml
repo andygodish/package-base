@@ -35,7 +35,6 @@ packages:
           variables:
             - name: ALLOW_ALL_NS_EXEMPTIONS
               path: cluster.policy.allowAllNsExemptions
-              
-  # - name: experimental-gateway-crds
-  #   path: ./
-  #   ref: "v1.4.0"
+  - name: experimental-gateway-crds
+    path: ./
+    ref: "v1.4.0"
