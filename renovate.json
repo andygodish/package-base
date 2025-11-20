@@ -18,8 +18,17 @@
       "customType": "regex",
       "managerFilePatterns": ["/packages\\/experimental-gateway-crds\\/zarf\\.yaml$/"],
       "matchStrings": [
-        "version:\\s*\"(?<currentValue>[^\"]+)\"",
-        "releases/download/(?<currentValue>[^/]+)/experimental-install\\.yaml"
+        "version:\\s*\"(?<currentValue>[^\"]+)\""
+      ],
+      "datasourceTemplate": "github-releases",
+      "depNameTemplate": "kubernetes-sigs/gateway-api",
+      "versioningTemplate": "semver"
+    },
+    {
+      "customType": "regex",
+      "managerFilePatterns": ["/packages\\/experimental-gateway-crds\\/zarf\\.yaml$/"],
+      "matchStrings": [
+        "https://github\\.com/kubernetes-sigs/gateway-api/releases/download/(?<currentValue>[^/]+)/experimental-install\\.yaml"
       ],
       "datasourceTemplate": "github-releases",
       "depNameTemplate": "kubernetes-sigs/gateway-api",
