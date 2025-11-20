@@ -1,0 +1,31 @@
+# Copyright 2024 Defense Unicorns
+# SPDX-License-Identifier: AGPL-3.0-or-later OR LicenseRef-Defense-Unicorns-Commercial
+# yaml-language-server: $schema=https://raw.githubusercontent.com/defenseunicorns/uds-cli/main/tasks.schema.json
+
+variables:
+  - name: ARCH
+    description: "What architecture to use"
+  - name: BUNDLE
+    description: The name of the bundle you are working with
+
+tasks:
+  - name: create
+    description: Create the UDS Zarf Package in the repository
+    inputs:
+      options:
+        description: For setting create time variables and flags
+      path:
+        description: Path to the zarf package definition being created
+        default: .
+      architecture:
+        description: The architecture of the package to create
+        default: ${UDS_ARCH}
+    actions:
+      - cmd: ./uds zarf package create ${{ .inputs.path }} --confirm --no-progress --architecture="${{ .inputs.architecture }}" ${{ .inputs.options }}
+
+  - name: experimental-gateway-crds
+    description: "Package for installing experimental Gateway API CRDs using kustomize"
+    actions:
+      - task: create
+        with:
+          path: packages/experimental-gateway-crds

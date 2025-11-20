@@ -5,7 +5,7 @@ metadata:
 packages:
   - name: base
     repository: ghcr.io/defenseunicorns/packages/private/uds/core-base
-    ref: 0.55.1-unicorn
+    ref: 0.56.0-unicorn
     overrides:
       istio-controlplane:
         base:
@@ -35,3 +35,7 @@ packages:
           variables:
             - name: ALLOW_ALL_NS_EXEMPTIONS
               path: cluster.policy.allowAllNsExemptions
+              
+  # - name: experimental-gateway-crds
+  #   path: ./
+  #   ref: "v1.4.0"
