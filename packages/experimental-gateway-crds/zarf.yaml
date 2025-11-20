@@ -14,3 +14,9 @@ components:
       - name: experimental-gateway-crds
         files:
           - https://github.com/kubernetes-sigs/gateway-api/releases/download/v1.4.0/experimental-install.yaml
+    actions:
+      onDeploy:
+        before: 
+          # raw-experimental-gateway-crds-experimental-gateway-crds-experimental-gateway-crds is the 
+          # “release-name source” that Zarf generates internally when it creates a Helm release for the manifests.files[0]
+          - cmd: bash scripts/change-gateway-crd-helm-ownership.sh raw-experimental-gateway-crds-experimental-gateway-crds-experimental-gateway-crds
