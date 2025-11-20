@@ -1,7 +1,7 @@
 kind: UDSBundle
 metadata:
   name: core-base
-  version: 0.55.1
+  version: 0.56.0
 packages:
   - name: base
     repository: ghcr.io/defenseunicorns/packages/private/uds/core-base

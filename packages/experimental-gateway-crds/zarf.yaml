@@ -1,0 +1,16 @@
+# Copyright 2024 Defense Unicorns
+# SPDX-License-Identifier: AGPL-3.0-or-later OR LicenseRef-Defense-Unicorns-Commercial
+
+kind: ZarfPackageConfig
+metadata:
+  name: experimental-gateway-crds
+  description: "Uses kustomize to install experimental Gateway API CRDs"
+  version: "v1.3.0"
+
+components:
+  - name: experimental-gateway-crds
+    required: true
+    manifests:
+      - name: experimental-gateway-crds
+        files:
+          - https://github.com/kubernetes-sigs/gateway-api/releases/download/v1.3.0/experimental-install.yaml

@@ -13,6 +13,17 @@
       "datasourceTemplate": "github-releases",
       "depNameTemplate": "defenseunicorns/uds-core",
       "versioningTemplate": "semver"
+    },
+    {
+      "customType": "regex",
+      "managerFilePatterns": ["/packages\\/experimental-gateway-crds\\/zarf\\.yaml$/"],
+      "matchStrings": [
+        "version:\\s*\"(?<currentValue>[^\"]+)\"",
+        "releases/download/(?<currentValue>[^/]+)/experimental-install\\.yaml"
+      ],
+      "datasourceTemplate": "github-releases",
+      "depNameTemplate": "kubernetes-sigs/gateway-api",
+      "versioningTemplate": "semver"
     }
   ],
 
@@ -25,6 +36,15 @@
       "semanticCommitScope": "core",
       "commitMessageTopic": "Core Base package",
       "prTitle": "deps(core): update core base package to {{newVersion}}"
+    },
+    {
+      "matchManagers": ["custom.regex"],
+      "matchPackageNames": ["kubernetes-sigs/gateway-api"],
+      "groupName": "Experimental Gateway CRDs",
+      "semanticCommitType": "deps",
+      "semanticCommitScope": "gateway",
+      "commitMessageTopic": "experimental gateway CRDs",
+      "prTitle": "deps(gateway): update experimental gateway CRDs to {{newVersion}}"
     }
   ]
 }
