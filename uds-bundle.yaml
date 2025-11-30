@@ -35,6 +35,7 @@ packages:
           variables:
             - name: ALLOW_ALL_NS_EXEMPTIONS
               path: cluster.policy.allowAllNsExemptions
-  - name: experimental-gateway-crds
-    path: ./
-    ref: "v1.4.0"
+# This should be the default in the next release of uds core
+# - name: experimental-gateway-crds
+#   path: ./
+#   ref: "v1.4.0"
