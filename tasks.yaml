@@ -69,5 +69,4 @@ tasks:
       allows for granular control over helm chart values."
     actions:
       - task: bundles:update-bundle-version
-      - task: packages:experimental-gateway-crds
       - task: bundles:create
