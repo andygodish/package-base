@@ -5,14 +5,14 @@ includes:
 variables:
   - name: REGISTRY
     description: "Remote OCI registry for the Core Base package"
-    default: "ghcr.io/defenseunicorns/packages/private/uds"
+    default: "ghcr.io/defenseunicorns/packages/uds"
   - name: PACKAGE_NAME
     default: "core-base"
   - name: PACKAGE_VERSION
     description: "Version of the Core Base package"
     default: "0.60.1"
   - name: PACKAGE_FLAVOR
-    default: "unicorn"
+    default: "upstream"
   - name: ARCHITECTURE
     description: "System architecture (amd64 or arm64)"
     default: ""

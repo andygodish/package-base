@@ -1,11 +1,11 @@
 kind: UDSBundle
 metadata:
   name: core-base
-  version: 0.59.1
+  version: 0.60.1
 packages:
   - name: base
-    repository: ghcr.io/defenseunicorns/packages/private/uds/core-base
-    ref: 0.59.1-unicorn
+    repository: ghcr.io/defenseunicorns/packages/uds/core-base
+    ref: 0.60.1-upstream
     overrides:
       istio-controlplane:
         base:

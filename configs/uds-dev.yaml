@@ -1,0 +1,12 @@
+# Example config file, use "zarf prepare generate-config zarf-config.yaml" to generate a new one
+log_level : 'info'
+
+package:
+  deploy:
+    components: 'istio-admin-gateway'
+    # Set a variable for package deploy
+    set:
+      service:
+        annotations:
+          example.com/annotation: "example-value"
+     
