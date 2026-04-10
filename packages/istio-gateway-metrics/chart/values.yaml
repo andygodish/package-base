@@ -1,0 +1,20 @@
+namespace: monitoring
+
+podMonitors:
+  enabled: true
+  interval: 15s
+  scrapeTimeout: 10s
+  scheme: http
+  envoyPath: /stats/prometheus
+  adminGateway:
+    name: admin-gateway-envoy-prom
+    namespace: istio-admin-gateway
+    selector:
+      istio: admin-ingressgateway
+    port: http-envoy-prom
+  tenantGateway:
+    name: tenant-gateway-envoy-prom
+    namespace: istio-tenant-gateway
+    selector:
+      istio: tenant-ingressgateway
+    port: http-envoy-prom
