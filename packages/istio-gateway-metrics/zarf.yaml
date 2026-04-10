@@ -1,0 +1,14 @@
+kind: ZarfPackageConfig
+metadata:
+  name: istio-gateway-metrics
+  description: PodMonitors for admin + tenant istio gateways (Envoy /stats/prometheus)
+  version: 0.1.0
+
+components:
+  - name: istio-gateway-metrics
+    required: true
+    charts:
+      - name: istio-gateway-metrics
+        version: 0.1.0
+        localPath: chart
+        namespace: monitoring

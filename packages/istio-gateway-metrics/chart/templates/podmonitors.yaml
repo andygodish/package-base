@@ -1,0 +1,43 @@
+{{- if and .Values.podMonitors.enabled (.Capabilities.APIVersions.Has "monitoring.coreos.com/v1") -}}
+apiVersion: monitoring.coreos.com/v1
+kind: PodMonitor
+metadata:
+  name: {{ .Values.podMonitors.adminGateway.name | quote }}
+  namespace: {{ include "istio-gateway-metrics.namespace" . }}
+  labels:
+    app.kubernetes.io/part-of: istio
+spec:
+  namespaceSelector:
+    matchNames:
+      - {{ .Values.podMonitors.adminGateway.namespace | quote }}
+  selector:
+    matchLabels:
+{{ toYaml .Values.podMonitors.adminGateway.selector | indent 6 }}
+  podMetricsEndpoints:
+    - port: {{ .Values.podMonitors.adminGateway.port | quote }}
+      path: {{ .Values.podMonitors.envoyPath | quote }}
+      interval: {{ .Values.podMonitors.interval | quote }}
+      scrapeTimeout: {{ .Values.podMonitors.scrapeTimeout | quote }}
+      scheme: {{ .Values.podMonitors.scheme | quote }}
+---
+apiVersion: monitoring.coreos.com/v1
+kind: PodMonitor
+metadata:
+  name: {{ .Values.podMonitors.tenantGateway.name | quote }}
+  namespace: {{ include "istio-gateway-metrics.namespace" . }}
+  labels:
+    app.kubernetes.io/part-of: istio
+spec:
+  namespaceSelector:
+    matchNames:
+      - {{ .Values.podMonitors.tenantGateway.namespace | quote }}
+  selector:
+    matchLabels:
+{{ toYaml .Values.podMonitors.tenantGateway.selector | indent 6 }}
+  podMetricsEndpoints:
+    - port: {{ .Values.podMonitors.tenantGateway.port | quote }}
+      path: {{ .Values.podMonitors.envoyPath | quote }}
+      interval: {{ .Values.podMonitors.interval | quote }}
+      scrapeTimeout: {{ .Values.podMonitors.scrapeTimeout | quote }}
+      scheme: {{ .Values.podMonitors.scheme | quote }}
+{{- end }}

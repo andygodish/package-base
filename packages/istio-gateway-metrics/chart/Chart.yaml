@@ -1,0 +1,6 @@
+apiVersion: v2
+name: istio-gateway-metrics
+description: PodMonitors to scrape Envoy /stats/prometheus from Istio gateways
+type: application
+version: 0.1.0
+appVersion: 0.1.0

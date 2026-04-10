@@ -29,3 +29,15 @@ tasks:
       - task: create
         with:
           path: packages/experimental-gateway-crds
+
+  - name: istio-gateway-metrics
+    description: "Local package with PodMonitors for admin + tenant istio gateways"
+    actions:
+      - task: create
+        with:
+          path: packages/istio-gateway-metrics
+
+  - name: test-istio-gateway-metrics-helm
+    description: "Smoke-test Helm templates for istio-gateway-metrics"
+    actions:
+      - cmd: ./scripts/test-istio-gateway-metrics-helm.sh

@@ -35,3 +35,9 @@ packages:
           variables:
             - name: ALLOW_ALL_NS_EXEMPTIONS
               path: cluster.policy.allowAllNsExemptions
+
+  # Local Zarf package: PodMonitors for scraping Envoy stats from admin+tenant gateways.
+  # Guarded by Helm Capabilities (won't render if PodMonitor CRD isn't present yet).
+  - name: istio-gateway-metrics
+    path: ./packages/istio-gateway-metrics
+    ref: 0.1.0
